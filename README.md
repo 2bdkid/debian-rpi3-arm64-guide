@@ -1,7 +1,8 @@
 # debian-rpi3-arm64-guide
 This is a guide for building an arm64 Debian distribution for the Raspberry Pi model B.
-In principle this guide will also work for the model B+, and model 4 with some tweaking.
-I do not have a model 4 to play with, but look out for future updates to this guide.
+In principle this guide will also work for the model B+, and model 4 with some tweaking 
+(that means do not follow this guide for the model 4). I do not have a model 4 to play with, 
+but look out for future updates to this guide.
 Development of this guide was done on Fedora Linux x86_64, however any distribution will
 work.
 
@@ -119,6 +120,7 @@ sudo cp firmware/boot/start.elf /mnt/boot
 ```
 
 ## Edit some configuration files
+Just copy the entire command into your terminal, or modify the files to match the text between the `EOF`'s.
 
 fstab tells the system how to mount the partitions during boot. Feel free to modify
 this file as you see fit, but this is sufficient.
@@ -152,7 +154,7 @@ EOF
 
 Remove password on `root`. This is for simplicity, as soon at the machine is booted up run `passwd` to create a
 root password. Modify `/mnt/etc/passwd` such that the line that begins with `root` looks like this. All you need 
-to do is remove the `x` in `root:x:`.
+to do is remove the `x` in `root:x:...`.
 
 ```
 root::0:0:root:/root:/bin/bash
