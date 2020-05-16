@@ -8,11 +8,11 @@ work.
 ---
 
 # Overview
-1. Installing prerequisites
-2. Format SD card
-3. Install base system root filesystem
-4. Build and install the Linux kernel
-5. Install firmware
+1. [Installing prerequisites](https://github.com/2bdkid/debian-rpi3-arm64-guide#installing-prerequisites)
+2. [Format SD card](https://github.com/2bdkid/debian-rpi3-arm64-guide#format-sd-card)
+3. [Install base system root filesystem](https://github.com/2bdkid/debian-rpi3-arm64-guide#install-base-system-root-filesystem)
+4. [Build and install the Linux kernel](https://github.com/2bdkid/debian-rpi3-arm64-guide#build-and-install-the-linux-kernel)
+5. [Install firmware](https://github.com/2bdkid/debian-rpi3-arm64-guide#install-firmware)
 6. Edit some configuration files
 
 ---
@@ -106,4 +106,17 @@ sudo cp ../linux-build/arch/arm64/boot/Image /mnt/boot/kernel8.img
 
 ## Install firmware
 
-# WIP MORE TO COME SOON
+There is some proprietary firmware that we cannot build from source so we will yank it from here.
+The additional `.elf` and `.dat` files can be used if you know what you are doing, but they are unnecessary to get the 
+system booting. Read 
+[The boot folder](https://www.raspberrypi.org/documentation/configuration/boot_folder.md) for more information.
+
+```
+git clone --depth=1 https://github.com/raspberrypi/firmware
+sudo cp firmware/boot/bootcode.bin /mnt/boot
+sudo cp firmware/boot/fixup.dat /mnt/boot
+sudo cp firmware/boot/start.elf /mnt/boot
+```
+
+## Edit some configuration files
+
