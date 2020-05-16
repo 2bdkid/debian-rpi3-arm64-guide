@@ -14,7 +14,7 @@ work.
 4. [Build and install the Linux kernel](https://github.com/2bdkid/debian-rpi3-arm64-guide#build-and-install-the-linux-kernel)
 5. [Install firmware](https://github.com/2bdkid/debian-rpi3-arm64-guide#install-firmware)
 6. Edit some configuration files
-
+7. Finalization
 ---
 
 ## Installing prerequisites
@@ -120,3 +120,58 @@ sudo cp firmware/boot/start.elf /mnt/boot
 
 ## Edit some configuration files
 
+fstab tells the system how to mount the partitions during boot. Feel free to modify
+this file as you see fit, but this is sufficient.
+
+```
+sudo tee /mnt/etc/fstab > /dev/null << EOF
+proc           /proc  proc defaults         0 0
+/dev/mmcblk0p1 /boot  vfat defaults         0 2
+/dev/mmcblk0p2 /      ext4 defaults,noatime 0 1
+EOF
+```
+
+Kernel command line parameters. Once again, feel free to modify the kernel parameters as you see fit.
+I found these were sufficient for a clean boot.
+
+```
+sudo tee /mnt/boot/cmdline.txt > /dev/null << EOF
+root=/dev/mmcblk0p2 rootfstype=ext4 rootwait
+EOF
+```
+
+This setting tells the RPI to load `kernel8.img` as a 64bit kernel.
+More information about this file can be found at 
+[config.txt](https://www.raspberrypi.org/documentation/configuration/config-txt/README.md).
+
+```
+sudo tee /mnt/boot/config.txt > /dev/null << EOF
+arm_64bit=1
+EOF
+```
+
+Remove password on `root`. This is for simplicity, as soon at the machine is booted up run `passwd` to create a
+root password. Modify `/mnt/etc/passwd` such that the line that begins with `root` looks like this. All you need 
+to do is remove the `x` in `root:x:`.
+
+```
+root::0:0:root:/root:/bin/bash
+```
+
+
+## Finalization
+
+At this point, the system is configured and should boot without errors. Please allow `umount` to finish before
+unplugging your SD card to prevent file corruption.
+
+Consider copying all files from `/mnt` to another folder as backup. Perhaps we should have installed everything into
+a folder in the first place, then copied that over to the SD card. Oh well. We already made it this far.
+
+```
+sudo umount /mnt/boot
+sudo umount /mnt
+```
+
+Congratulations. Your raspberry pi should now be running a fully functional 64bit OS, as it should.
+
+Please submit an Issue if you found errors in the guide or want me to add something. Brady Dean
