@@ -31,13 +31,13 @@ sudo dnf install openssl-devel qemu-user-static gcc-aarch64-linux-gnu binutils-a
 ## Format SD card
 
 The SD card needs a FAT partition for `/boot` to reside on and the remaining space will be used for `/`. Replace `/dev/sdb` with
-the path that corresponds to your SD card.
+the path that corresponds to your SD card for the rest of the guide.
 
 ```
 sudo fdisk /dev/sdb
 ```
 
-Create a 200-300MiB primary partition 1 with partition type `c`. Then create a primary partition 2 with the remaining space. 
+Create a 200-300MiB primary partition 1 with partition type `c`, then create a primary partition 2 with the remaining space. 
 It can keep the default partition type `83`.
 
 Verify your partition table looks similar to this and write the table.
@@ -152,7 +152,7 @@ arm_64bit=1
 EOF
 ```
 
-Remove password on `root`. This is for simplicity, as soon at the machine is booted up run `passwd` to create a
+Remove `root` password. This is for simplicity, as soon at the machine is booted up run `passwd` to create a
 root password. Modify `/mnt/etc/passwd` such that the line that begins with `root` looks like this. All you need 
 to do is remove the `x` in `root:x:...`.
 
