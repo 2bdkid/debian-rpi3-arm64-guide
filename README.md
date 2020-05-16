@@ -13,8 +13,8 @@ work.
 3. [Install base system root filesystem](https://github.com/2bdkid/debian-rpi3-arm64-guide#install-base-system-root-filesystem)
 4. [Build and install the Linux kernel](https://github.com/2bdkid/debian-rpi3-arm64-guide#build-and-install-the-linux-kernel)
 5. [Install firmware](https://github.com/2bdkid/debian-rpi3-arm64-guide#install-firmware)
-6. Edit some configuration files
-7. Finalization
+6. [Edit some configuration files](https://github.com/2bdkid/debian-rpi3-arm64-guide#edit-some-configuration-files)
+7. [Finalization](https://github.com/2bdkid/debian-rpi3-arm64-guide#finalization)
 ---
 
 ## Installing prerequisites
