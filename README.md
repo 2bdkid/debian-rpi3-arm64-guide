@@ -72,7 +72,7 @@ You can also install packages from inside a chroot later.
 
 ```
 sudo debootstrap --arch=arm64 --foreign stable /mnt http://deb.debian.org/debian
-sudo cp ${which qemu-aarch64-static) /mnt/usr/bin
+sudo cp $(which qemu-aarch64-static) /mnt/usr/bin
 sudo chroot /mnt /debootstrap/debootstrap --second-stage
 ```
 
