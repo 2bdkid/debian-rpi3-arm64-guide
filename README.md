@@ -159,7 +159,11 @@ to do is remove the `x` in `root:x:...`.
 ```
 root::0:0:root:/root:/bin/bash
 ```
+Enable ssh by creating `/boot/ssh`.
 
+```
+sudo touch /mnt/boot/ssh
+```
 
 ## Finalization
 
