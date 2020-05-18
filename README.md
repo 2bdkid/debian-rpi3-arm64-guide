@@ -159,8 +159,8 @@ At this point, the system is configured and should boot without errors, but ther
 configuration steps we could take from inside a chroot.
 
 ```
-passwd # set root password
 sudo chroot /mnt /bin/bash
+passwd # set root password
 dpkg-reconfigure locales # select your locale
 systemctl enable systemd-networkd
 hostnamectl set-hostname <hostname>
