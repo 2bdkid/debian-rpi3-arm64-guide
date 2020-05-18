@@ -141,14 +141,6 @@ arm_64bit=1
 EOF
 ```
 
-Remove `root` password. This is for simplicity, as soon at the machine is booted up run `passwd` to create a
-root password. Modify `/mnt/etc/passwd` such that the line that begins with `root` looks like this. All you need 
-to do is remove the `x` in `root:x:...`.
-
-```
-root::0:0:root:/root:/bin/bash
-```
-
 Enable DHCP on ethernet. You can set up the network however you want.
 
 ```
@@ -167,6 +159,7 @@ At this point, the system is configured and should boot without errors, but ther
 configuration steps we could take from inside a chroot.
 
 ```
+passwd # set root password
 sudo chroot /mnt /bin/bash
 dpkg-reconfigure locales # select your locale
 systemctl enable systemd-networkd
@@ -179,7 +172,7 @@ Edit `/etc/hosts` and append `<hostname>` to the line with `127.0.0.1`. E.g.,
 127.0.0.1       localhost rpi
 ```
 
-Finalize the configuration of the machine and
+Consider adding a user account with `adduser` and finally,
 
 ```
 exit
