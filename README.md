@@ -164,6 +164,7 @@ passwd # set root password
 dpkg-reconfigure locales # select your locale
 systemctl enable systemd-networkd
 hostnamectl set-hostname <hostname>
+systemctl set-default multi-user
 ```
 
 Edit `/etc/hosts` and append `<hostname>` to the line with `127.0.0.1`. E.g.,
