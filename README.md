@@ -67,7 +67,8 @@ sudo mount /dev/sdb1 /mnt/boot
 
 We will use debootstrap to download the base Debian system and finish the package configuration inside a chroot.
 debootstrap will download just enough packages to let the system boot, but if you know which additional packages you 
-will need then use the `--include` flag to add them here. For example, you may want to go ahead and install dbus. 
+will need, then use the `--include` flag to add them here. 
+I would recommend starting with `--include=dbus,openssh-server,man-db,ntp`
 You can also install packages from inside a chroot later.
 
 ```
