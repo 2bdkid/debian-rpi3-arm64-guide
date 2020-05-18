@@ -97,7 +97,7 @@ git clone --depth=1 -b rpi-5.6.y https://github.com/raspberrypi/linux
 mkdir linux-build
 cd linux
 make O=../linux-build ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcmrpi3_defconfig
-make O=../linux-build ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- modules Image
+make O=../linux-build ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- modules Image dtbs
 sudo make O=../linux-build ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=/mnt modules_install
 sudo make O=../linux-build ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_DTBS_PATH=/mnt/boot dtbs_install
 sudo mv /mnt/boot/broadcom/* /mnt/boot # rpi documentation says .dtb files should alongside start.elf, i.e. in /boot
