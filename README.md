@@ -68,25 +68,13 @@ sudo mount /dev/sdb1 /mnt/boot
 We will use debootstrap to download the base Debian system and finish the package configuration inside a chroot.
 debootstrap will download just enough packages to let the system boot, but if you know which additional packages you 
 will need, then use the `--include` flag to add them here. 
-I would recommend starting with `--include=dbus,openssh-server,man-db,ntp`
+I would recommend starting with `--include=dbus,openssh-server,man-db,ntp,locales`
 You can also install packages from inside a chroot later.
 
 ```
 sudo debootstrap --arch=arm64 --foreign stable /mnt http://deb.debian.org/debian
 sudo cp $(which qemu-aarch64-static) /mnt/usr/bin
 sudo chroot /mnt /debootstrap/debootstrap --second-stage
-```
-
-If you wish to install additional packages from within a chroot, then
-
-```
-sudo chroot /mnt /bin/bash
-```
-
-Finally
-
-```
-sudo rm /mnt/usr/bin/qemu-aarch64-static
 ```
 
 ## Build and install the Linux kernel
@@ -161,10 +149,44 @@ to do is remove the `x` in `root:x:...`.
 root::0:0:root:/root:/bin/bash
 ```
 
+Enable DHCP on ethernet. You can set up the network however you want.
+
+```
+sudo tee /mnt/boot/usr/lib/systemd/network/en.network > /dev/null EOF
+[Match]
+Name=en*
+
+[Network]
+DHCP=ipv4
+EOF
+```
+
 ## Finalization
 
-At this point, the system is configured and should boot without errors. Please allow `umount` to finish before
-unplugging your SD card to prevent file corruption.
+At this point, the system is configured and should boot without errors, but there's a few more 
+configuration steps we could take from inside a chroot.
+
+```
+sudo chroot /mnt /bin/bash
+dpkg-reconfigure locales # select your locale
+systemctl enable systemd-networkd
+hostnamectl set-hostname <hostname>
+```
+
+Edit `/etc/hosts` and append `<hostname>` to the line with `127.0.0.1`. E.g.,
+
+```
+127.0.0.1       localhost rpi
+```
+
+Finalize the configuration of the machine and
+
+```
+exit
+sudo rm /mnt/usr/bin/qemu-aarch64-static
+```
+
+Please allow `umount` to finish before unplugging your SD card to prevent file corruption.
 
 Consider copying all files from `/mnt` to another folder as backup. Perhaps we should have installed everything into
 a folder in the first place, then copied that over to the SD card. Oh well. We already made it this far.
