@@ -179,10 +179,10 @@ exit
 sudo rm /mnt/usr/bin/qemu-aarch64-static
 ```
 
-Please allow `umount` to finish before unplugging your SD card to prevent file corruption.
-
 Consider copying all files from `/mnt` to another folder as backup. Perhaps we should have installed everything into
 a folder in the first place, then copied that over to the SD card. Oh well. We already made it this far.
+
+Please allow `umount` to finish before unplugging your SD card to prevent file corruption.
 
 ```
 sudo umount /mnt/boot
