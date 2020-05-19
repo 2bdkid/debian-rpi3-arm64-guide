@@ -166,12 +166,6 @@ systemctl enable systemd-networkd
 systemctl set-default multi-user
 ```
 
-Edit `/etc/hosts` and append `<hostname>` to the line with `127.0.0.1`. E.g.,
-
-```
-127.0.0.1       localhost rpi
-```
-
 Consider adding a user account with `adduser` and finally,
 
 ```
