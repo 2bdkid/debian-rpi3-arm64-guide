@@ -1,8 +1,8 @@
 # debian-rpi3-arm64-guide
 This is a guide for building an arm64 Debian distribution for the Raspberry Pi model B.
-In principle this guide will also work for the model B+, and model 4 with some tweaking 
-(that means do not follow this guide for the model 4). I do not have a model 4 to play with, 
-but look out for future updates to this guide.
+In principle this guide will also work for the model B+. See
+[2bdkid/debian-rpi4-arm64-guide](https://github.com/2bdkid/debian-rpi4-arm64-guide)
+for a raspberry pi model 4 guide.
 Development of this guide was done on Fedora Linux x86_64, however any distribution will
 work.
 
