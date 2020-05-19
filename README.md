@@ -144,7 +144,7 @@ EOF
 Enable DHCP on ethernet. You can set up the network however you want.
 
 ```
-sudo tee /mnt/boot/usr/lib/systemd/network/en.network > /dev/null EOF
+sudo tee /mnt/boot/usr/lib/systemd/network/en.network > /dev/null << EOF
 [Match]
 Name=en*
 
